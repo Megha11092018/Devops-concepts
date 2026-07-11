@@ -1,8 +1,3 @@
-Absolutely! Since this is a **DevOps Portfolio** showcasing your projects, AWS concepts, VPC architecture, Jenkins deployment, and database configuration, here's a professional `README.md` that you can directly use in your GitHub repository.
-
----
-
-````markdown
 # 🚀 DevOps Portfolio
 
 Welcome to my **DevOps Portfolio**, where I showcase hands-on DevOps projects, AWS cloud implementations, CI/CD pipelines, automation, and cloud networking concepts.
