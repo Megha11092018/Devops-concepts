@@ -1,293 +1,426 @@
- ### Devops Introduction
-bash <(curl -sL https://tinyurl.com/3w6rac3n)
+Absolutely! Since this is a **DevOps Portfolio** showcasing your projects, AWS concepts, VPC architecture, Jenkins deployment, and database configuration, here's a professional `README.md` that you can directly use in your GitHub repository.
 
-🚀 Database Installations
-Setup MySQL on Ubuntu Instances
+---
 
-📌 MySQL Database on Ubuntu 24.04 Instance
-# Update and Install MySQL
-sudo apt update && sudo apt upgrade -y
-sudo apt install mysql-server -y
-sudo mysql --version
+````markdown
+# 🚀 DevOps Portfolio
 
-# Configure MySQL for Password and Remote Login
-sudo mysql
+Welcome to my **DevOps Portfolio**, where I showcase hands-on DevOps projects, AWS cloud implementations, CI/CD pipelines, automation, and cloud networking concepts.
 
-# Inside the MySQL shell, run the following: Updated by SAK
-CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '1234';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-EXIT;
+---
 
-# Allow Remote Connections
-sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+## 📌 About
 
-# Change it to: Its already present just change 127.0.0.1 to 0.0.0.0
-bind-address = 0.0.0.0
+This portfolio demonstrates practical experience in:
 
-# Restart MySQL to Apply Changes
-sudo systemctl restart mysql
+- ☁️ Amazon Web Services (AWS)
+- 🐳 Docker
+- 🔧 Jenkins CI/CD
+- 🌐 Apache Tomcat
+- 📦 Maven
+- 🗄️ MySQL (AWS RDS)
+- 🔐 Amazon VPC
+- 🖥️ Amazon EC2
+- 📂 Amazon S3
+- 🔑 IAM Roles & Policies
+- 🐧 Linux Administration
+- 🔄 Git & GitHub
 
+---
 
+# 📑 Table of Contents
 
-MySQL Installation Link
-bash <(curl -sL https://tinyurl.com/mr4brnzj) 
+- DevOps Practices
+- AWS Cloud Projects
+- AWS VPC Architecture
+- Jenkins CI/CD Project
+- Docker Deployment
+- Database Configuration
+- Technologies Used
+- Learning Outcomes
 
+---
 
+# 🚀 DevOps Practices
 
+Implementing DevOps principles to streamline software development, testing, deployment, and operations through automation and continuous integration.
 
-🚀 Docker Installation
-Setup Docker on Ubuntu 24.04
+### Key Practices
 
-📌 Docker Installation Steps
+- Version Control using Git & GitHub
+- Continuous Integration
+- Continuous Deployment
+- Infrastructure Automation
+- Configuration Management
+- Cloud Deployment
+- Monitoring & Logging
+- Security Best Practices
+
+---
+
+# ☁️ AWS (Amazon Web Services)
+
+AWS is a cloud computing platform that provides scalable, reliable, and secure infrastructure for deploying applications.
+
+## Features Implemented
+
+### Amazon EC2
+
+Amazon EC2 instances host web applications, Jenkins, Docker containers, and Tomcat servers.
+
+### Amazon S3
+
+Used for scalable object storage, backups, and storing deployment artifacts.
+
+### Security Groups
+
+Configured inbound and outbound rules to secure EC2 instances and application access.
+
+### IAM Roles & Policies
+
+Implemented least-privilege IAM policies for secure resource access.
+
+### Data Backup
+
+Configured S3 storage for automated application backup and recovery.
+
+---
+
+# 🌐 Amazon VPC Architecture
+
+Implemented a secure AWS Virtual Private Cloud (VPC) to isolate cloud resources.
+
+## Components
+
+### VPC
+
+Provides network isolation for cloud infrastructure.
+
+### Public Subnet
+
+Hosts internet-facing resources.
+
+### Private Subnet
+
+Hosts backend services and databases securely.
+
+### Internet Gateway
+
+Enables internet connectivity for public subnet resources.
+
+### NAT Gateway
+
+Allows private subnet resources to access the internet securely.
+
+### Route Tables
+
+Configured routing between subnets and gateways.
+
+### Security Groups
+
+Stateful firewall protecting EC2 instances.
+
+---
+
+# 🚀 Project 1
+
+# Automated Web Application Deployment Using Jenkins Freestyle Project
+
+## Architecture
+
+Developer
+
+↓
+
+GitHub Repository
+
+↓
+
+Jenkins Freestyle Job
+
+↓
+
+Maven Build
+
+↓
+
+WAR File
+
+↓
+
+Apache Tomcat
+
+↓
+
+AWS EC2
+
+↓
+
+Web Application
+
+---
+
+## Project Workflow
+
+1. Developer pushes source code to GitHub.
+2. Jenkins pulls the latest code.
+3. Maven builds the application.
+4. WAR file is generated.
+5. Jenkins deploys WAR to Apache Tomcat.
+6. Application is hosted on AWS EC2.
+7. Users access the deployed application.
+
+---
+
+## Technologies
+
+- GitHub
+- Jenkins
+- Maven
+- Apache Tomcat
+- AWS EC2
+- Linux
+- Java
+- Spring Boot
+
+---
+
+## CI/CD Pipeline
+
+GitHub
+
+⬇
+
+Jenkins
+
+⬇
+
+Build
+
+⬇
+
+Test
+
+⬇
+
+Package
+
+⬇
+
+Deploy
+
+⬇
+
+Tomcat
+
+⬇
+
+AWS EC2
+
+---
+
+## Tomcat Users Configuration
+
+```xml
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+
+<user username="admin"
+      password="admin"
+      roles="manager-gui,manager-script,manager-jmx,manager-status"/>
+````
+
+---
+
+# 🗄️ Database Configuration (AWS RDS)
+
+## Install MySQL Client
+
+```bash
 sudo apt update
-sudo apt  install docker.io -y
-sudo docker --version
-sudo apt install docker-compose -y
-docker-compose --version
-                        
+sudo apt install mysql-client -y
+```
 
+---
 
+## Connect to AWS RDS
 
-🚀 Maven Installation
-Setup Maven on Ubuntu 24.04
+```bash
+mysql -h <RDS-ENDPOINT> -P 3306 -u admin -p
+```
 
-📌 Maven Installation Steps
-#  Switch to Root User
-$ sudo su -
+---
 
-# Download Apache Maven 3.9.11
-$ wget https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz
+## Create Database
 
-# Extract the Archive
-$ tar -zxvf apache-maven-3.9.11-bin.tar.gz
+```sql
+CREATE DATABASE userdb;
+```
 
-# Remove the Tar File
-$ rm -rf apache-maven-3.9.11-bin.tar.gz
+---
 
-# Rename the Extracted Directory
-$ mv apache-maven-3.9.11 maven
+## Verify Database
 
-# Add Maven to the PATH: Edit the .bashrc file:
-$ vi ~/.bashrc
+```sql
+SHOW DATABASES;
+```
 
-# Add this line at the end of the file:
-$ export PATH=/root/maven/bin:$PATH
+---
 
-# Apply the Updated .bashrc
-$ source ~/.bashrc
+## Select Database
 
-# Verify Maven Installation
-$ mvn --version
+```sql
+USE userdb;
+```
 
+---
 
+## Show Tables
 
-Maven Installation Link
-bash <(curl -sL https://tinyurl.com/52ykfnu5)
+```sql
+SHOW TABLES;
+```
 
+---
 
+## Spring Boot Configuration
 
+```properties
+spring.datasource.url=jdbc:mysql://<RDS-ENDPOINT>:3306/userdb
+spring.datasource.username=admin
+spring.datasource.password=YourPassword
 
-🚀 Tomcat Installation
-Setup Tomcat on Ubuntu 24.04
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-📌 Tomcat Installation Steps
-#  Switch to Root User
-$ sudo su -
+spring.jpa.hibernate.ddl-auto=update
 
-# Download Apache Tomcat v9.0.111
-$ wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.111/bin/apache-tomcat-9.0.111.tar.gz
+spring.jpa.show-sql=true
 
-# Extract the Archive
-$ tar -zxvf apache-tomcat-9.0.111.tar.gz
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+```
 
-# Remove the Tar File
-$ rm -rf apache-tomcat-9.0.111.tar.gz
+---
 
-# Confirgure Tomcat username admin & password admin
-$ vi apache-tomcat-9.0.111/conf/tomcat-users.xml
+## Build Application
 
-# Configure Tomcat Remote Access
-$ vi apache-tomcat-9.0.111/webapps/manager/META-INF/context.xml
+```bash
+mvn clean package
+```
 
-# Start the Tomcat server
-$ sh apache-tomcat-9.0.111/bin/startup.sh
+---
 
-# Shutdown the Tomcat server
-$ sh apache-tomcat-9.0.111/bin/shutdown.sh
-                        
+## Run Application
 
+```bash
+java -jar target/*.jar
+```
 
+---
 
-Tomcat Installation Link
-bash <(curl -sL https://tinyurl.com/mrhvupt9)
+## Verify Tables
 
+```sql
+USE userdb;
 
+SHOW TABLES;
 
-Jenkins Installation
-Setup Jenkins on Ubuntu 24.04
+SELECT * FROM users;
+```
 
-Ubuntu 24.04 + 2gb RAM + 2 CPU + 10gb ROM
-bash <(curl -sL https://tinyurl.com/2r6nkffn)
+---
 
+# 🐳 Docker Deployment
 
+### Build Image
 
+```bash
+docker build -t springboot-app .
+```
 
-🚀 Prometheus Installation
-Setup Prometheus on Ubuntu 24.04
+### Run Container
 
-Ubuntu 24.04 + 4gb RAM + 2 CPU + 20gb ROM
-bash <(curl -sL https://tinyurl.com/57xn7sf8)
+```bash
+docker run -d -p 8080:8080 springboot-app
+```
 
+### Check Running Containers
 
+```bash
+docker ps
+```
 
+### Stop Container
 
+```bash
+docker stop <container-id>
+```
 
-🚀 Node Exporter Installation
-Setup Node Exporter on Ubuntu 24.04
+---
 
-Ubuntu 24.04 + 1gb RAM + 1 CPU + 8gb ROM
-bash <(curl -sL https://tinyurl.com/ms6t4mwd)
+# 📦 Technologies Used
 
+| Category           | Technologies               |
+| ------------------ | -------------------------- |
+| Cloud              | AWS EC2, VPC, IAM, S3, RDS |
+| CI/CD              | Jenkins                    |
+| Build Tool         | Maven                      |
+| Application Server | Apache Tomcat              |
+| Containerization   | Docker                     |
+| Version Control    | Git & GitHub               |
+| Database           | MySQL                      |
+| Backend            | Java, Spring Boot          |
+| OS                 | Ubuntu Linux               |
 
+---
 
+# 📚 Learning Outcomes
 
+✔ Hands-on AWS Cloud Deployment
 
+✔ Jenkins CI/CD Pipeline
 
-🚀 Grafana Installation
-Setup Grafana on Ubuntu 24.04
+✔ Maven Build Automation
 
-Ubuntu 24.04 + 4gb RAM + 2 CPU + 20gb ROM
-bash <(curl -sL https://tinyurl.com/296t47pu)
+✔ Apache Tomcat Deployment
 
+✔ Spring Boot Deployment
 
+✔ Docker Containerization
 
+✔ AWS Networking (VPC)
 
-                        
-🚀 Ansible Installation
-Setup Ansible on Ubuntu 24.04
+✔ AWS IAM & Security Groups
 
-Ansible Master node
+✔ MySQL Database Configuration
 
-bash <(curl -sL https://tinyurl.com/mse8n4k6)
-                        
-Run this only in Master Node
-After this need to do manual steps to add Worker Nodes
+✔ Git & GitHub Version Control
 
-Ansible Worker nodes
+✔ Linux Administration
 
-bash <(curl -sL https://tinyurl.com/munbkzpb)
-                        
-Run this in all the worker nodes
+✔ Infrastructure Automation
 
+---
 
 
+# 👩‍💻 Author
 
-KubeAdm Cluster Installation
-Setup Kubeadm Cluster on Ubuntu 24.04
+**Megha Biradar**
 
-Kube Master node
+Aspiring DevOps Engineer | AWS Cloud | Java Full Stack | Docker | Jenkins | Linux | CI/CD | Spring Boot
 
-curl -sL https://tinyurl.com/mt346aen | bash
-                        
-Run this only in Master Node
-After this need to do manual steps to add Worker Nodes
-Kube Worker nodes
+GitHub: [https://github.com/Megha11092018](https://github.com/Megha11092018)
 
-curl -sL https://tinyurl.com/yvmvxmzb | bash
-                        
-Run this in all the worker nodes
+LinkedIn: [https://www.linkedin.com/in/megha-biradar-206734333](https://www.linkedin.com/in/megha-biradar-206734333)
 
+---
 
+## ⭐ If you found this project helpful, don't forget to Star the repository!
 
+```
 
+---
 
-
-
-
-
-AWS CLI Installation
-AWS CLI Installation in Ubuntu
-
-AWS CLI Installation in Ubuntu
-# 1. Update packages
-sudo apt update
-
-# 2. Install required packages
-sudo apt install -y unzip curl
-
-# 3. Download AWS CLI v2 installer
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-
-# 4. Unzip the installer
-unzip awscliv2.zip
-
-# 5. Run the installer
-sudo ./aws/install
-
-# 6. Check the version
-aws --version
-                        
-AwsCli Installation Link
-bash <(curl -sL https://tinyurl.com/4bcvxkz2)
-                        
-
-
-
-
-🚀 Nexus Repository Setup
-Nexus Installation Link
-Ubuntu 24.04 LTS + 4 GB RAM + 2 CPU + 20 GB Storage
-bash <(curl -sL https://tinyurl.com/5an29335)
-                
-Add Nexus Repositories and Distribution Management
-
-
-
-
-
-📌 Nexus Repositories in pom.xml
-<repositories>
-    <repository>
-        <id>nexus-releases</id>
-        <name>maven-releases</name>
-        <url>http://localhost:8081/repository/maven-releases/</url>
-    </repository>
-    <repository>
-        <id>nexus-snapshots</id>
-        <name>maven-snapshots</name>
-        <url>http://localhost:8081/repository/maven-snapshots/</url>
-    </repository>
-</repositories>
-                          
-<distributionManagement>
-    <repository>
-        <id>nexus-releases</id>
-        <url>http://localhost:8081/repository/maven-releases/</url>
-    </repository>
-    <snapshotRepository>
-        <id>nexus-snapshots</id>
-        <url>http://localhost:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
-</distributionManagement>
-                        
-
-
-
-
-📌 Nexus Settings.xml
-<settings>
-    <servers>
-        <server>
-            <id>nexus-releases</id>
-            <username>admin</username>
-            <password>admin</password>
-        </server>
-        <server>
-            <id>nexus-snapshots</id>
-            <username>admin</username>
-            <password>admin</password>
-        </server>
-    </servers>
-</settings>
-                        
+This README is suitable for a **professional GitHub portfolio**. It includes your DevOps practices, AWS concepts, VPC, Jenkins deployment, Docker, RDS database configuration, technologies, and learning outcomes in a clean, recruiter-friendly format.
+```
