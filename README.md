@@ -1,319 +1,293 @@
+ ### Devops Introduction
+bash <(curl -sL https://tinyurl.com/3w6rac3n)
+
+🚀 Database Installations
+Setup MySQL on Ubuntu Instances
+
+📌 MySQL Database on Ubuntu 24.04 Instance
+# Update and Install MySQL
+sudo apt update && sudo apt upgrade -y
+sudo apt install mysql-server -y
+sudo mysql --version
+
+# Configure MySQL for Password and Remote Login
+sudo mysql
+
+# Inside the MySQL shell, run the following: Updated by SAK
+CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EXIT;
+
+# Allow Remote Connections
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# Change it to: Its already present just change 127.0.0.1 to 0.0.0.0
+bind-address = 0.0.0.0
+
+# Restart MySQL to Apply Changes
+sudo systemctl restart mysql
 
 
-# Database Configuration (MySQL)
 
-## Step 1: Install MySQL Client (Ubuntu EC2)
+MySQL Installation Link
+bash <(curl -sL https://tinyurl.com/mr4brnzj) 
 
-```bash
+
+
+
+🚀 Docker Installation
+Setup Docker on Ubuntu 24.04
+
+📌 Docker Installation Steps
 sudo apt update
-sudo apt install mysql-client -y
-```
+sudo apt  install docker.io -y
+sudo docker --version
+sudo apt install docker-compose -y
+docker-compose --version
+                        
 
-Verify installation:
 
-```bash
-mysql --version
-```
 
----
+🚀 Maven Installation
+Setup Maven on Ubuntu 24.04
 
-# Step 2: Connect to MySQL Database (AWS RDS)
+📌 Maven Installation Steps
+#  Switch to Root User
+$ sudo su -
 
-```bash
-mysql -h <RDS-ENDPOINT> -P 3306 -u admin -p
-```
+# Download Apache Maven 3.9.11
+$ wget https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz
 
-Example
+# Extract the Archive
+$ tar -zxvf apache-maven-3.9.11-bin.tar.gz
 
-```bash
-mysql -h database-1.abc123.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
-```
+# Remove the Tar File
+$ rm -rf apache-maven-3.9.11-bin.tar.gz
 
-Enter the password when prompted.
+# Rename the Extracted Directory
+$ mv apache-maven-3.9.11 maven
 
----
+# Add Maven to the PATH: Edit the .bashrc file:
+$ vi ~/.bashrc
 
-# Step 3: Show Existing Databases
+# Add this line at the end of the file:
+$ export PATH=/root/maven/bin:$PATH
 
-```sql
-SHOW DATABASES;
-```
+# Apply the Updated .bashrc
+$ source ~/.bashrc
 
----
+# Verify Maven Installation
+$ mvn --version
 
-# Step 4: Create Database
 
-```sql
-CREATE DATABASE userdb;
-```
 
-Verify
+Maven Installation Link
+bash <(curl -sL https://tinyurl.com/52ykfnu5)
 
-```sql
-SHOW DATABASES;
-```
 
----
 
-# Step 5: Select Database
 
-```sql
-USE userdb;
-```
+🚀 Tomcat Installation
+Setup Tomcat on Ubuntu 24.04
 
----
+📌 Tomcat Installation Steps
+#  Switch to Root User
+$ sudo su -
 
-# Step 6: Check Selected Database
+# Download Apache Tomcat v9.0.111
+$ wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.111/bin/apache-tomcat-9.0.111.tar.gz
 
-```sql
-SELECT DATABASE();
-```
+# Extract the Archive
+$ tar -zxvf apache-tomcat-9.0.111.tar.gz
 
----
+# Remove the Tar File
+$ rm -rf apache-tomcat-9.0.111.tar.gz
 
-# Step 7: Show Tables
+# Confirgure Tomcat username admin & password admin
+$ vi apache-tomcat-9.0.111/conf/tomcat-users.xml
 
-```sql
-SHOW TABLES;
-```
+# Configure Tomcat Remote Access
+$ vi apache-tomcat-9.0.111/webapps/manager/META-INF/context.xml
 
-Initially, it will return:
+# Start the Tomcat server
+$ sh apache-tomcat-9.0.111/bin/startup.sh
 
-```
-Empty set
-```
+# Shutdown the Tomcat server
+$ sh apache-tomcat-9.0.111/bin/shutdown.sh
+                        
 
-Spring Boot will automatically create tables if configured correctly.
 
----
 
-# Step 8: Exit MySQL
+Tomcat Installation Link
+bash <(curl -sL https://tinyurl.com/mrhvupt9)
 
-```sql
-EXIT;
-```
 
-or
 
-```sql
-QUIT;
-```
+Jenkins Installation
+Setup Jenkins on Ubuntu 24.04
 
----
+Ubuntu 24.04 + 2gb RAM + 2 CPU + 10gb ROM
+bash <(curl -sL https://tinyurl.com/2r6nkffn)
 
-# Spring Boot Database Configuration
 
-Open
 
-```
-src/main/resources/application.properties
-```
 
-Add
+🚀 Prometheus Installation
+Setup Prometheus on Ubuntu 24.04
 
-```properties
-spring.datasource.url=jdbc:mysql://<RDS-ENDPOINT>:3306/userdb
-spring.datasource.username=admin
-spring.datasource.password=YourPassword
+Ubuntu 24.04 + 4gb RAM + 2 CPU + 20gb ROM
+bash <(curl -sL https://tinyurl.com/57xn7sf8)
 
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
 
-spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
-```
 
-Example
 
-```properties
-spring.datasource.url=jdbc:mysql://database-1.abc123.us-east-1.rds.amazonaws.com:3306/userdb
-spring.datasource.username=admin
-spring.datasource.password=Admin@123
+🚀 Node Exporter Installation
+Setup Node Exporter on Ubuntu 24.04
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
+Ubuntu 24.04 + 1gb RAM + 1 CPU + 8gb ROM
+bash <(curl -sL https://tinyurl.com/ms6t4mwd)
 
----
 
-# Build the Project
 
-```bash
-mvn clean package
-```
 
-or
 
-```bash
-./mvnw clean package
-```
 
----
+🚀 Grafana Installation
+Setup Grafana on Ubuntu 24.04
 
-# Run Spring Boot Application
+Ubuntu 24.04 + 4gb RAM + 2 CPU + 20gb ROM
+bash <(curl -sL https://tinyurl.com/296t47pu)
 
-```bash
-java -jar target/*.jar
-```
 
----
 
-# Verify Tables are Created
 
-Reconnect to MySQL
+                        
+🚀 Ansible Installation
+Setup Ansible on Ubuntu 24.04
 
-```bash
-mysql -h <RDS-ENDPOINT> -u admin -p
-```
+Ansible Master node
 
-Select database
+bash <(curl -sL https://tinyurl.com/mse8n4k6)
+                        
+Run this only in Master Node
+After this need to do manual steps to add Worker Nodes
 
-```sql
-USE userdb;
-```
+Ansible Worker nodes
 
-Show tables
+bash <(curl -sL https://tinyurl.com/munbkzpb)
+                        
+Run this in all the worker nodes
 
-```sql
-SHOW TABLES;
-```
 
-Describe a table
 
-```sql
-DESCRIBE user;
-```
 
-View data
+KubeAdm Cluster Installation
+Setup Kubeadm Cluster on Ubuntu 24.04
 
-```sql
-SELECT * FROM user;
-```
+Kube Master node
 
----
+curl -sL https://tinyurl.com/mt346aen | bash
+                        
+Run this only in Master Node
+After this need to do manual steps to add Worker Nodes
+Kube Worker nodes
 
-# Useful MySQL Commands
+curl -sL https://tinyurl.com/yvmvxmzb | bash
+                        
+Run this in all the worker nodes
 
-## Show databases
 
-```sql
-SHOW DATABASES;
-```
 
-## Use database
 
-```sql
-USE userdb;
-```
 
-## Show tables
 
-```sql
-SHOW TABLES;
-```
 
-## Describe table
 
-```sql
-DESC table_name;
-```
 
-## View all records
+AWS CLI Installation
+AWS CLI Installation in Ubuntu
 
-```sql
-SELECT * FROM table_name;
-```
+AWS CLI Installation in Ubuntu
+# 1. Update packages
+sudo apt update
 
-## Count records
+# 2. Install required packages
+sudo apt install -y unzip curl
 
-```sql
-SELECT COUNT(*) FROM table_name;
-```
+# 3. Download AWS CLI v2 installer
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 
-## Create database
+# 4. Unzip the installer
+unzip awscliv2.zip
 
-```sql
-CREATE DATABASE database_name;
-```
+# 5. Run the installer
+sudo ./aws/install
 
-## Drop database
+# 6. Check the version
+aws --version
+                        
+AwsCli Installation Link
+bash <(curl -sL https://tinyurl.com/4bcvxkz2)
+                        
 
-```sql
-DROP DATABASE database_name;
-```
 
-## Create table
 
-```sql
-CREATE TABLE employee(
-id INT PRIMARY KEY,
-name VARCHAR(100)
-);
-```
 
-## Insert data
+🚀 Nexus Repository Setup
+Nexus Installation Link
+Ubuntu 24.04 LTS + 4 GB RAM + 2 CPU + 20 GB Storage
+bash <(curl -sL https://tinyurl.com/5an29335)
+                
+Add Nexus Repositories and Distribution Management
 
-```sql
-INSERT INTO employee VALUES(1,'Megha');
-```
 
-## Update data
 
-```sql
-UPDATE employee
-SET name='John'
-WHERE id=1;
-```
 
-## Delete data
 
-```sql
-DELETE FROM employee
-WHERE id=1;
-```
+📌 Nexus Repositories in pom.xml
+<repositories>
+    <repository>
+        <id>nexus-releases</id>
+        <name>maven-releases</name>
+        <url>http://localhost:8081/repository/maven-releases/</url>
+    </repository>
+    <repository>
+        <id>nexus-snapshots</id>
+        <name>maven-snapshots</name>
+        <url>http://localhost:8081/repository/maven-snapshots/</url>
+    </repository>
+</repositories>
+                          
+<distributionManagement>
+    <repository>
+        <id>nexus-releases</id>
+        <url>http://localhost:8081/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+        <id>nexus-snapshots</id>
+        <url>http://localhost:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+</distributionManagement>
+                        
 
-## Drop table
 
-```sql
-DROP TABLE employee;
-```
 
-## Exit MySQL
 
-```sql
-EXIT;
-```
-
----
-
-# Complete Workflow
-
-```text
-Install MySQL Client
-        │
-        ▼
-Connect to AWS RDS
-        │
-        ▼
-Create Database
-        │
-        ▼
-Configure application.properties
-        │
-        ▼
-Build Spring Boot Project
-        │
-        ▼
-Run Spring Boot Application
-        │
-        ▼
-Hibernate Creates Tables
-        │
-        ▼
-Verify Tables in MySQL
-        │
-        ▼
-Insert & Retrieve Data
-```
+📌 Nexus Settings.xml
+<settings>
+    <servers>
+        <server>
+            <id>nexus-releases</id>
+            <username>admin</username>
+            <password>admin</password>
+        </server>
+        <server>
+            <id>nexus-snapshots</id>
+            <username>admin</username>
+            <password>admin</password>
+        </server>
+    </servers>
+</settings>
+                        
