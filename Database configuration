@@ -1,0 +1,321 @@
+
+
+# Database Configuration (MySQL)
+
+## Step 1: Install MySQL Client (Ubuntu EC2)
+
+```bash
+sudo apt update
+sudo apt install mysql-client -y
+```
+
+Verify installation:
+
+```bash
+mysql --version
+```
+
+---
+
+# Step 2: Connect to MySQL Database (AWS RDS)
+
+```bash
+mysql -h <RDS-ENDPOINT> -P 3306 -u admin -p
+```
+
+Example
+
+```bash
+mysql -h database-1.abc123.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+```
+
+Enter the password when prompted.
+
+---
+
+# Step 3: Show Existing Databases
+
+```sql
+SHOW DATABASES;
+```
+
+---
+
+# Step 4: Create Database
+
+```sql
+CREATE DATABASE userdb;
+```
+
+Verify
+
+```sql
+SHOW DATABASES;
+```
+
+---
+
+# Step 5: Select Database
+
+```sql
+USE userdb;
+```
+
+---
+
+# Step 6: Check Selected Database
+
+```sql
+SELECT DATABASE();
+```
+
+---
+
+# Step 7: Show Tables
+
+```sql
+SHOW TABLES;
+```
+
+Initially, it will return:
+
+```
+Empty set
+```
+
+Spring Boot will automatically create tables if configured correctly.
+
+---
+
+# Step 8: Exit MySQL
+
+```sql
+EXIT;
+```
+
+or
+
+```sql
+QUIT;
+```
+
+---
+
+# Spring Boot Database Configuration
+
+Open
+
+```
+src/main/resources/application.properties
+```
+
+Add
+
+```properties
+spring.datasource.url=jdbc:mysql://<RDS-ENDPOINT>:3306/userdb
+spring.datasource.username=admin
+spring.datasource.password=YourPassword
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+```
+
+Example
+
+```properties
+spring.datasource.url=jdbc:mysql://database-1.abc123.us-east-1.rds.amazonaws.com:3306/userdb
+spring.datasource.username=admin
+spring.datasource.password=Admin@123
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+---
+
+# Build the Project
+
+```bash
+mvn clean package
+```
+
+or
+
+```bash
+./mvnw clean package
+```
+
+---
+
+# Run Spring Boot Application
+
+```bash
+java -jar target/*.jar
+```
+
+---
+
+# Verify Tables are Created
+
+Reconnect to MySQL
+
+```bash
+mysql -h <RDS-ENDPOINT> -u admin -p
+```
+
+Select database
+
+```sql
+USE userdb;
+```
+
+Show tables
+
+```sql
+SHOW TABLES;
+```
+
+Describe a table
+
+```sql
+DESCRIBE user;
+```
+
+View data
+
+```sql
+SELECT * FROM user;
+```
+
+---
+
+# Useful MySQL Commands
+
+## Show databases
+
+```sql
+SHOW DATABASES;
+```
+
+## Use database
+
+```sql
+USE userdb;
+```
+
+## Show tables
+
+```sql
+SHOW TABLES;
+```
+
+## Describe table
+
+```sql
+DESC table_name;
+```
+
+## View all records
+
+```sql
+SELECT * FROM table_name;
+```
+
+## Count records
+
+```sql
+SELECT COUNT(*) FROM table_name;
+```
+
+## Create database
+
+```sql
+CREATE DATABASE database_name;
+```
+
+## Drop database
+
+```sql
+DROP DATABASE database_name;
+```
+
+## Create table
+
+```sql
+CREATE TABLE employee(
+id INT PRIMARY KEY,
+name VARCHAR(100)
+);
+```
+
+## Insert data
+
+```sql
+INSERT INTO employee VALUES(1,'Megha');
+```
+
+## Update data
+
+```sql
+UPDATE employee
+SET name='John'
+WHERE id=1;
+```
+
+## Delete data
+
+```sql
+DELETE FROM employee
+WHERE id=1;
+```
+
+## Drop table
+
+```sql
+DROP TABLE employee;
+```
+
+## Exit MySQL
+
+```sql
+EXIT;
+```
+
+---
+
+# Complete Workflow
+
+```text
+Install MySQL Client
+        │
+        ▼
+Connect to AWS RDS
+        │
+        ▼
+Create Database
+        │
+        ▼
+Configure application.properties
+        │
+        ▼
+Build Spring Boot Project
+        │
+        ▼
+Run Spring Boot Application
+        │
+        ▼
+Hibernate Creates Tables
+        │
+        ▼
+Verify Tables in MySQL
+        │
+        ▼
+Insert & Retrieve Data
+```
+
+
