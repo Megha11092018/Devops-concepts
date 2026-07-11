@@ -120,7 +120,7 @@ Stateful firewall protecting EC2 instances.
 
 # 🚀 Project 1
 
-# Automated Web Application Deployment Using Jenkins Freestyle Project
+# Automated Web Application Deployment Using Jenkins  Project
 
 ## Architecture
 
@@ -132,7 +132,7 @@ GitHub Repository
 
 ↓
 
-Jenkins Freestyle Job
+Jenkins 
 
 ↓
 
@@ -399,45 +399,6 @@ docker stop <container-id>
 
 ---
 
-# 📸 Project Screenshots
-
-You can add screenshots in the repository as shown below.
-
-```
-images/
-
-├── aws-overview.png
-
-├── vpc-architecture.png
-
-├── jenkins-pipeline.png
-
-├── tomcat-deployment.png
-
-├── database-configuration.png
-```
-
-Then display them:
-
-```markdown
-## AWS Overview
-
-![AWS](images/aws-overview.png)
-
-## VPC Architecture
-
-![VPC](images/vpc-architecture.png)
-
-## Jenkins Deployment
-
-![Jenkins](images/jenkins-pipeline.png)
-
-## Database Configuration
-
-![Database](images/database-configuration.png)
-```
-
----
 
 # 👩‍💻 Author
 
